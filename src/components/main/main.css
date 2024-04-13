@@ -137,6 +137,7 @@
     padding: 0 5%;
     max-height: 70vh;
     overflow-y: scroll;
+    justify-content: flex-start;
     background-color: var(--main-bg-color);
 }
 
