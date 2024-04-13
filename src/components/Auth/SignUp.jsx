@@ -26,7 +26,6 @@ const SignUp = () => {
             // Handle errors appropriately (e.g., display error message to user)
         }
     };
-
         
     return (
         <div className="SignUp-container">
