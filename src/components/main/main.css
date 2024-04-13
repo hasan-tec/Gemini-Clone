@@ -1,0 +1,259 @@
+.main {
+    flex: 1;
+    min-height: 100vh;
+    padding-bottom: 15vh;
+    position: relative;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    padding: 20px;
+    color: #ddd;
+}
+
+.nav img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.main-container {
+    max-width: 900px;
+    margin: auto;
+    background-color: #131314;
+}
+
+.greet {
+    margin: 50px 0;
+    font-size: 56px;
+    color: #ddd;
+    font-weight: 500;
+    padding: 20px;
+}
+
+.greet span {
+    background: -webkit-linear-gradient(16deg, #4b90ff, #ff5546);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    background-color: #131314;
+}
+
+.card {
+    height: 200px;
+    padding: 15px;
+    background-color: #1E1F20;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.card img {
+    width: 35px;
+    padding: 5px;
+    position: absolute;
+    background-color: white;
+    border-radius: 20px;
+    bottom: 10px;
+}
+
+.card p {
+    color: #ddd;
+    font-size: 17px;
+}
+
+.card:hover {
+    background-color: #666;
+}
+
+.main-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 20px;
+    margin: auto;
+    background-color: #131314;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    background-color: #1E1F20;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.search-box img {
+    width: 24px;
+    cursor: pointer;
+    filter: invert(1);
+}
+
+.search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 18px;
+    color: #ddd;
+}
+
+.search-box div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.bottom-info {
+    font-size: 13px;
+    margin: 15px auto;
+    text-align: center;
+    font-weight: 300;
+    color: #aaa;
+}
+
+.result{
+    padding: 0px 5%;
+    max-height: 70vh;
+    overflow-y: scroll;
+    background-color: #131314;
+}
+
+.result::-webkit-scrollbar{
+    display: none;
+}
+
+.result-title{
+    margin: 40px 0px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: #ddd;
+}
+
+.result img{
+    width: 40px;
+    border-radius: 50%;
+    
+}
+
+.result-data{
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    color: #ddd;
+}
+
+.loader{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #131314;
+}.loader hr{
+    border-radius: 4px;
+    border:none;
+    background-color: #f6f7f8;
+    background: linear-gradient(to right,#9ed7ff,#ffffff,#9ed7ff);
+    background-size: 800px 50px;
+    height: 20px;
+    animation: loader 3s infinite linear;
+}
+
+@keyframes loader{
+    0%{
+        background-position: -800px 0px;
+    }
+    100%{
+        background-position: 800px 0px;
+    }
+}
+
+.result-data p{
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #ddd;
+}
+
+
+
+/* Add smooth scrolling for a more fluid user experience */
+html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Enhance the greet class with a subtle animation */
+  .greet {
+    animation: greetAnimation 1s ease-in-out;
+  }
+  
+  @keyframes greetAnimation {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Add a pulsating animation to the search box to draw user attention */
+  .search-box {
+    animation: searchBoxPulse 2s infinite;
+  }
+  
+  @keyframes searchBoxPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(75, 144, 255, 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 85, 70, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 85, 70, 0);
+    }
+  }
+  
+  /* Animate the loader to give a more dynamic feel */
+  .loader hr {
+    animation: loaderAnimation 3s infinite linear;
+  }
+  
+  @keyframes loaderAnimation {
+    0% {
+      background-position: -800px 0;
+    }
+    100% {
+      background-position: 800px 0;
+    }
+  }
+  
+  /* Add a subtle animation to the result data */
+  .result-data {
+    animation: resultDataAnimation 1s ease-in-out;
+  }
+  
+  @keyframes resultDataAnimation {
+    0% {
+      transform: translateX(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }

@@ -1,0 +1,63 @@
+import React, { useState } from 'react';
+import "./SignUp.css";
+import { auth } from './firebase'; // Assuming your firebase.js is in the same directory
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+
+const SignUp = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+    
+        // Validate user input (optional)
+    
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            console.log('User created successfully:', userCredential.user);
+            // Handle successful signup (e.g., redirect to home page)
+            navigate('/HomePage'); // Redirect to homepage after successful sign-in
+        } catch (error) {
+            console.error('Error creating user:', error.message);
+            // Handle errors appropriately (e.g., display error message to user)
+        }
+    };
+
+        
+    return (
+        <div className="SignUp-container">
+            <div className="SignUp-content">
+                <h1 className="SignUp-title">Sign Up</h1>
+                <form className="SignUp-form" onSubmit={handleSignUp}>
+                    <div className="form-box">
+                        <label className="SignUp-label" htmlFor="firstName">First Name:</label>
+                        <input type="text" className="SignUp-input" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                    </div>
+                    <div className="form-box">
+                        <label className="SignUp-label" htmlFor="lastName">Last Name:</label>
+                        <input type="text" className="SignUp-input" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                    </div>
+                    <div className="form-box">
+                        <label className="SignUp-label" htmlFor="email">Email:</label>
+                        <input type="email" className="SignUp-input" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div className="form-box">
+                        <label className="SignUp-label" htmlFor="password">Password:</label>
+                        <input type="password" className="SignUp-input" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <div className="form-box">
+                        <label className="SignUp-label" htmlFor="confirmPassword">Confirm Password:</label>
+                        <input type="password" className="SignUp-input" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    </div>
+                    <button type="submit" className="SignUp-button">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    );
+}
+
+export default SignUp
