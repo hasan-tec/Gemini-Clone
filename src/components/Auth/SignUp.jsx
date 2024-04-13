@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import "./SignUp.css";
+import { BrowserRouter as Router, Route, Link, useNavigate } from 'react-router-dom';
 import { auth } from './firebase'; // Assuming your firebase.js is in the same directory
+import "./SignUp.css";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
@@ -10,6 +11,7 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const navigate = useNavigate();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
