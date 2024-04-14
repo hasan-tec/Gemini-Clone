@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, useNavigate } from 'react-router-
 import { auth } from './firebase'; // Assuming your firebase.js is in the same directory
 import "./SignUp.css";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-
+import { Alert } from 'react-bootstrap'; // Import Alert component from react-bootstrap
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -11,13 +11,14 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [error, setError] = useState(null); // Add state for error message
     const navigate = useNavigate();
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-    
+
         // Validate user input (optional)
-    
+
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             console.log('User created successfully:', userCredential.user);
@@ -25,10 +26,10 @@ const SignUp = () => {
             navigate('/HomePage'); // Redirect to homepage after successful sign-in
         } catch (error) {
             console.error('Error creating user:', error.message);
-            // Handle errors appropriately (e.g., display error message to user)
+            setError(error.message); // Set error message
         }
     };
-        
+
     return (
         <div className="SignUp-container">
             <div className="SignUp-content">
@@ -54,6 +55,7 @@ const SignUp = () => {
                         <label className="SignUp-label" htmlFor="confirmPassword">Confirm Password:</label>
                         <input type="password" className="SignUp-input" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                     </div>
+                    {error && <Alert variant="danger">{error}</Alert>} {/* Display error message if present */}
                     <button type="submit" className="SignUp-button">Sign Up</button>
                 </form>
             </div>

@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Link, useNavigate } from 'react-router-
 import { auth } from './firebase'; // Import auth from firebase.js
 import "./SignIn.css"
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { Alert } from 'react-bootstrap'; // Import Alert component from react-bootstrap
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null); // Add state for error message
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
@@ -18,9 +19,9 @@ const SignIn = () => {
         navigate('/HomePage'); // Redirect to homepage after successful sign-in
     } catch (error) {
         console.error('Error signing in:', error.message);
-        // Handle errors appropriately
+        setError(error.message); // Set error message
     }
-};
+  };
 
   return (
     <div className="SignIn-container">
@@ -36,6 +37,7 @@ const SignIn = () => {
             <input type="password" className="SignIn-input" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
           <button type="submit" className="SignIn-button">Sign In</button>
+          {error && <Alert variant="danger">{error}</Alert>} {/* Display error message if present */}
           <p className="SignIn-link">
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </p>
