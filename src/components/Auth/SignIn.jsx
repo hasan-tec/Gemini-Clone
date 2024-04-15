@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, useNavigate } from 'react-router-dom';
 import { auth } from './firebase'; // Import auth from firebase.js
 import "./SignIn.css"
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Alert } from 'react-bootstrap'; // Import Alert component from bootstrap
+import { BrowserRouter as Router, Route, Link, useNavigate } from 'react-router-dom';
+
+const errorMessages = {
+  'auth/invalid-email': 'Please enter a valid email address.',
+  'auth/user-not-found': 'The email address or password is incorrect.',
+  'auth/wrong-password': 'The email address or password is incorrect.',
+  // Add more error messages as needed
+};
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -19,7 +26,7 @@ const SignIn = () => {
         navigate('/HomePage'); // Redirect to homepage after successful sign-in
     } catch (error) {
         console.error('Error signing in:', error.message);
-        setError(error.message); // Set error message
+        setError(errorMessages[error.code] || 'An error occurred. Please try again later.'); // Set error message
     }
   };
 
