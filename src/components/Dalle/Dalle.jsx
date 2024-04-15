@@ -6,36 +6,14 @@ import default_image from "../../assets/default_image.svg";
 import { useState, useContext } from 'react';
 import  Configuration  from "openai";
 import OpenAIApi from "openai";
-import config from '../../openai.config';
 
-const openai = new OpenAIApi(config); // OpenAI client with your API key (insecure)
-dangerouslyAllowBrowser: true;
+
+
 
 
 const Dalle = () => {
-  const [imageUrl, setImageUrl] = useState(null);
-
-  const onSent = async () => {
-    const prompt = document.querySelector('input').value; // Get user input
-
-    if (!prompt) {
-      return alert('Please enter a prompt!');
-    }
-
-    try {
-      const response = await openai.createImage({
-        prompt,
-        n: 1, // Number of images to generate (set to 1)
-        size: "1024x1024", // Image size
-        quality: "standard", // Image quality
-      });
-
-      setImageUrl(response.data.data[0].url);
-    } catch (error) {
-      console.error('Error generating image:', error);
-      alert('An error occurred. Please try again later.');
-    }
-  };
+  
+  
 
     return (
         <div className='w-full'>
