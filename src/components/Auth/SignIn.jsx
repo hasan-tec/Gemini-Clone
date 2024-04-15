@@ -23,7 +23,7 @@ const SignIn = () => {
 
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        navigate('/HomePage'); // Redirect to homepage after successful sign-in
+        navigate('/Dalle'); // Redirect to homepage after successful sign-in
     } catch (error) {
         console.error('Error signing in:', error.message);
         setError(errorMessages[error.code] || 'An error occurred. Please try again later.'); // Set error message
